@@ -1,0 +1,43 @@
+<idea-plugin url="https://github.com/MaKToff/Assistant">
+    <id>com.github.maktoff.assistant</id>
+    <name>Assistant plugin</name>
+    <version>1.0</version>
+    <vendor>Mikhail Kita</vendor>
+
+    <description>
+        Recommends code snippets and Stack Overflow discussions.
+    </description>
+
+    <idea-version since-build="171"/>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.idea</depends>
+
+    <actions>
+        <group id="ErrorSearchGroup">
+            <add-to-group group-id="CompilerErrorViewPopupMenu" anchor="first"/>
+            <action id="Assistant.ErrorSearchAction"
+                    class="com.github.maktoff.assistant.view.ErrorSearchAction"
+                    text="Find more information"
+                    icon="/icons/assistant.png"
+                    description="Search of the additional information about this error."/>
+        </group>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Assistant"
+                    secondary="true"
+                    anchor="right"
+                    factoryClass="com.github.maktoff.assistant.view.AssistantToolWindowFactory"
+                    icon="/icons/assistant.png"/>
+
+        <intentionAction>
+            <className>com.github.maktoff.assistant.view.ErrorSearchIntention</className>
+            <category>Error Search</category>
+            <descriptionDirectoryName>ErrorSearchIntention</descriptionDirectoryName>
+        </intentionAction>
+
+        <!-- <applicationConfigurable groupId="tools" instance="com.github.maktoff.assistant.view.AssistantConfigurable"/> -->
+    </extensions>
+</idea-plugin>
